@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\HooksProcessors\DataProcessor;
+namespace Unit\HooksProcessors\DataProcessor;
 
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\State\ProcessorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use HooksProcessors\DataProcessor\HooksDoctrineProcessor;
+use HooksProcessors\DataProcessor\HooksProcessor;
 use HooksProcessors\DataProcessor\HooksProcessorAfterCreate;
 use HooksProcessors\DataProcessor\HooksProcessorAfterRemove;
 use HooksProcessors\DataProcessor\HooksProcessorAfterUpdate;
@@ -20,18 +20,18 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Traversable;
 
-final class HooksDoctrineProcessorTest extends TestCase
+final class HooksProcessorTest extends TestCase
 {
     private ProcessorInterface&MockObject $persistProcessor;
     private ProcessorInterface&MockObject $removeProcessor;
-    private HooksDoctrineProcessor $processor;
+    private HooksProcessor $processor;
 
     /** @before  */
     public function setUpDependencies(): void
     {
         $this->persistProcessor = $this->createMock(ProcessorInterface::class);
         $this->removeProcessor = $this->createMock(ProcessorInterface::class);
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -75,7 +75,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessBeforeCreate(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             $this->generateBeforeCreateHandlers(1),
@@ -93,7 +93,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessBeforeCreateShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             $this->generateBeforeCreateHandlers(0),
@@ -111,7 +111,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterCreate(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -129,7 +129,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterCreateShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -147,7 +147,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessBeforeUpdate(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -166,7 +166,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessBeforeUpdateShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -185,7 +185,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterUpdate(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -203,7 +203,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterUpdateShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -221,7 +221,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterRemove(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -239,7 +239,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testProcessAfterRemoveShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -257,7 +257,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testBeforeRemove(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),
@@ -275,7 +275,7 @@ final class HooksDoctrineProcessorTest extends TestCase
 
     public function testBeforeRemoveShouldNotBeCalled(): void
     {
-        $this->processor = new HooksDoctrineProcessor(
+        $this->processor = new HooksProcessor(
             $this->persistProcessor,
             $this->removeProcessor,
             new ArrayCollection(),

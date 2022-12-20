@@ -14,7 +14,7 @@ use function is_object;
 use function iterator_to_array;
 use function sprintf;
 
-final class HooksDoctrineProcessor implements ProcessorInterface
+final class HooksProcessor implements ProcessorInterface
 {
     /**
      * @var HooksProcessorBeforeCreate[]

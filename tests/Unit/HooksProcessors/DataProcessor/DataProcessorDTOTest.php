@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\HooksProcessors\DataProcessor;
+namespace Unit\HooksProcessors\DataProcessor;
 
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GraphQl\DeleteMutation;
