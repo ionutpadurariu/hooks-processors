@@ -1,0 +1,35 @@
+{
+    "name": "ionutpadurariu/hooks-processors",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "HooksProcessors\\": "src/"
+        }
+    },
+    "autoload-test": {
+        "psr-4": {
+            "Tests\\HooksProcessors\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ionut Padurariu",
+            "email": "ionut.padurariu90@gmail.com"
+        }
+    ],
+    "require": {
+        "api-platform/core": "^3.0",
+        "squizlabs/php_codesniffer": "*",
+        "infection/infection": "^0.26.16",
+        "phpunit/phpunit": "^9.5",
+        "doctrine/collections": "^2.1"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    }
+}
